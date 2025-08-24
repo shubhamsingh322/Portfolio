@@ -3,12 +3,12 @@
 
 @font-face {
     font-family:atypbold;
-    src: url(/fonts/AtypDisplayTRIAL-Bold-BF65727125c8d1d.otf);
+    src: url(./AtypDisplayTRIAL-Bold-BF65727125c8d1d.otf);
 }
 
 @font-face {
     font-family:atypmedium;
-    src: url(/fonts/AtypDisplayTRIAL-Medium-BF65727125b8683.otf);
+    src: url(./AtypDisplayTRIAL-Medium-BF65727125b8683.otf);
 }
 
 
