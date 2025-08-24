@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Centered PDF Card View</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .work-item {
+      max-width: 300px;
+      margin: 100px auto;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .work-item img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .pdf-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 20px;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      display: none;
+      max-height: calc(100vh - 100px); 
+      overflow-y: auto;
+    }
+
+    .pdf-popup canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .pdf-close {
+      position: absolute;
+      top: 20px;
+      right: 0px;
+      background: black;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 35px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 768px) {
+      .pdf-popup {
+        position: fixed;
+        top: 5vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 90vh;
+        max-height: 90vh;
+        padding: 10px;
+        border-radius: 8px;
+        overflow-y: auto;
+      }
+
+      .pdf-popup canvas {
+        width: auto !important;
+        max-width: 100%;
+        height: auto !important;
+      }
+
+      .pdf-close {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Trigger -->
+  <div class="work-item" data-pdf="https://ik.imagekit.io/rftln8kfv/Final%20Work/Packaging/Soan_papdi_final.pdf?updatedAt=1752483096554">
+    <img src="https://ik.imagekit.io/rftln8kfv/Final%20Work/Digital/Thank%20you%20Message%20-%20Western%20Living-1.jpg?updatedAt=1752483119372" alt="Packaging PDF 1" />
+  </div>
+
+  <!-- PDF Viewer Popup -->
+  <div class="pdf-popup" id="pdfPopup">
+    <div class="pdf-close" id="pdfCloseBtn">&times;</div>
+    <canvas id="pdfViewer"></canvas>
+  </div>
+
+  <script>
+    const popup = document.getElementById('pdfPopup');
+    const canvas = document.getElementById('pdfViewer');
+    const context = canvas.getContext('2d');
+    const closeBtn = document.getElementById('pdfCloseBtn');
+
+    function renderPDF(url) {
+      pdfjsLib.getDocument(url).promise
+        .then(pdf => pdf.getPage(1))
+        .then(page => {
+          const scale = 1.0; // ✅ faster rendering, decent quality
+          const viewport = page.getViewport({ scale });
+
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          return page.render({
+            canvasContext: context,
+            viewport: viewport
+          }).promise;
+        })
+        .then(() => {
+          popup.style.display = 'block';
+        })
+        .catch(err => {
+          console.error("Error loading PDF:", err);
+          alert("Unable to load PDF.");
+        });
+    }
+
+    // Click image to open PDF
+    document.querySelector('.work-item').addEventListener('click', function () {
+      const pdfUrl = this.getAttribute('data-pdf');
+      renderPDF(pdfUrl);
+    });
+
+    // Close PDF viewer
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+      canvas.width = 0;
+      canvas.height = 0;
+    });
+  </script>
+
+</body>
+</html>
