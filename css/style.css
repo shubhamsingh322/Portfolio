@@ -1,15 +1,17 @@
-
-
-
 @font-face {
-    font-family:atypbold;
-    src: url(./AtypDisplayTRIAL-Bold-BF65727125c8d1d.otf);
+  font-family: 'atypbold';
+  src: url('./AtypDisplayTRIAL-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-    font-family:atypmedium;
-    src: url(./AtypDisplayTRIAL-Medium-BF65727125b8683.otf);
+  font-family: 'atypmedium';
+  src: url('./AtypDisplayTRIAL-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
 }
+
 
 
 /*-----------------------------
@@ -25,7 +27,7 @@ Header
 
 .category-nav h2{
   color:#fff;
-  font-family: atypmedium;
+  font-family: 'atypmedium', sans-serif;
   text-transform: uppercase;
   font-size: 3rem;
 }
@@ -495,3 +497,4 @@ Pdf
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
+
