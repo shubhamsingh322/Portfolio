@@ -1,3 +1,6 @@
+
+
+
 @font-face {
   font-family: 'atypbold';
   src: url('./AtypDisplayTRIAL-Bold.otf') format('opentype');
@@ -13,12 +16,11 @@
 }
 
 
-
 /*-----------------------------
 Header
 ---------------------------*/
 
-.brand  h2{
+.brand  h2 {
   color:#fff;
   font-family: atypmedium;
   text-transform: uppercase;
@@ -27,7 +29,7 @@ Header
 
 .category-nav h2{
   color:#fff;
-  font-family: 'atypmedium', sans-serif;
+  font-family: atypmedium;
   text-transform: uppercase;
   font-size: 3rem;
 }
@@ -62,17 +64,16 @@ body.lock-scroll {
 
 
 body {
-      margin: 0;
-     background-color: #d84c29;
-      
-    }
+  margin: 0;
+  background: radial-gradient(circle, #666666 0%, #111111 100%);
+}
+
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 40px 80px;
-      background-color: #d84c29;
     }
 
     .header img {
@@ -105,7 +106,6 @@ body {
     Section 1
     ---------------------------------*/
        .hero-section {
-      background: url('/images/CR_Icon_BG.svg') no-repeat center center/cover;
       height: 60vh;
       display: flex;
       justify-content: center;
@@ -123,7 +123,7 @@ body {
 
     .hero-content h1 {
       font-size: 7.5rem;
-      color: white;
+      color: #7fff70;
       font-weight: 900;
       line-height: 0.9;
       font-family: atypmedium;
@@ -216,7 +216,7 @@ body {
   gap: 30px;
   padding: 40px;
   transition: opacity 0.3s ease;
-  background-color: #efeae4;
+ background-color: rgba(0, 0, 0, 0.2);
   margin: 0px 80px;
   
 }
@@ -497,4 +497,3 @@ Pdf
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-
